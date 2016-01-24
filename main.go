@@ -53,7 +53,11 @@ func main() {
 	valid := series_now.Validate(stack)*/
 	fmt.Println("Starting JSON server on port :8080")
 	http.HandleFunc("/series/series_titles", seriesTitles)
-	log.Fatal(http.ListenAndServe("localhost:8080", nil))
+	
+	//log.Fatal(http.ListenAndServe("localhost:8080", nil))
+
+	//production
+	log.Fatal(http.ListenAndServe("45.79.179.222:8080", nil))
 }
 
 func seriesTitles(w http.ResponseWriter, r *http.Request) {
