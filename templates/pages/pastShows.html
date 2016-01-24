@@ -1,0 +1,10 @@
+<md-content>
+	<md-list>
+		<md-subheader class="md-no-sticky">Shows Gone By</md-subheader>
+		<md-list-item ng-repeat="show in PastShows">
+			<div class="md-list-item-text">
+				<md-button ng-href="{{show.link}}"><img ng-src="{{show.img}}"/>{{show.name}}</md-button>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

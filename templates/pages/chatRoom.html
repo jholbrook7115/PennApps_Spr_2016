@@ -1,0 +1,18 @@
+<md-content>
+	<md-list>
+		<md-list-item ng-repeat="msg in chatLog">
+			<div class="md-list-item-text">
+				<span>{{msg.user}}{{msg.content}}</span>
+			</div>
+		</md-list-item>
+	</md-list>
+
+	<form name="userForm">
+		<div layout-gt-xs="row">
+		<md-input-container class="md-block" flex-gt-xs>
+			<label>Message</label>
+			<input ng-model="msg.content">
+		</md-input-container>
+		</div>
+	</form>
+</md-content>
