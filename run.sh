@@ -1,1 +1,1 @@
-cat new-tonight.html | go run main.go
+go run main.go

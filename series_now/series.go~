@@ -1,0 +1,40 @@
+package series_now
+
+import (
+	"encoding/json"
+)
+
+type Series struct {
+	ObjectID string
+	Title string
+	Img string
+	Bio string
+	Discuss []string
+}
+
+func series(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	forEachNode(doc, startElement, endElement)
+	return nil
+	var attr []html.Attribute
+	if n.Type == html.ElementNode && n.Data == "h3" {
+		n = n.FirstChild
+		attr = n.Attr
+//		fmt.Println(attr[0].Val)
+		stack = append(stack, attr[0].Val) // push tag
+		//fmt.Println(stack)
+	}
+	
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		series(c)
+	}
+}

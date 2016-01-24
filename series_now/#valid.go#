@@ -1,4 +1,7 @@
 package series_now
+
+
+
 func validate(stack []string) []string {
 	var n []string
 	var s string
@@ -30,3 +33,4 @@ func basename(s string) string {
 	}
 	return s
 }
+
