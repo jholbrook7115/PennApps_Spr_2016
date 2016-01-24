@@ -2,39 +2,64 @@ package main
 
 import (
 	"fmt"
-//	"os"
-	"github.com/lidozeneli/PennApps_Spr_2016/series_now"
-//	"golang.org/x/net/html"
+	"encoding/json"
+	"net/http"
+	"log"
+//	"github.com/lidozeneli/PennApps_Spr_2016/series_now"
 )
+type Titles struct {
+	Title []string `json:"titles"`
+}
 
-var stack []string
+var title_literal []string = []string{
+	"alaska-the-last-frontier-exposed",
+	"ax-men-logged-and-loaded",
+	"beachfront-bargain-hunt",
+	"galavant",
+	"guys-grocery-games",
+	"kc-undercover",
+	"the-circus-inside-the-greatest-political-show-on-earth",
+	"beachfront-bargain-hunt",
+	"liv-maddie",
+	"the-circus-inside-the-greatest-political-show-on-earth",
+	"alaska-the-last-frontier",
+	"ax-men",
+	"caribbean-life",
+	"downton-abbey-on-masterpiece",
+	"hoarders",
+	"keeping-up-with-the-kardashians",
+	"shameless",
+	"worst-cooks-in-america",
+	"caribbean-life",
+	"alaska-the-last-frontier",
+	"billions",
+	"cutthroat-kitchen",
+	"hoarders",
+	"hollywood-teen-medium",
+	"island-life",
+	"live-to-tell",
+	"married-by-mom-and-dad",
+	"mercy-street",
+	"the-x-files",
+	"island-life",
+	"greatest-party-story-ever",
+	}
 
 func main() {
-/*	doc, err := html.Parse(os.Stdin)
+	/*stack, err := series_now.GetSeries("http://www.tvguide.com/new-tonight/")
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "series_now: %v\n", err)
-		os.Exit(1)
-	}*/
-	//series(doc)
-	err, stack := series_now.GetSeries("http://www.tvguide.com/new-tonight/")
-	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("GetSeries: %v:", err)
 	}
-	fmt.Println(stack)
+	valid := series_now.Validate(stack)*/
+	fmt.Println("Starting JSON server on port :8080")
+	http.HandleFunc("/series/series_titles", seriesTitles)
+	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
 
-/*func series(n *html.Node) {
-	var attr []html.Attribute
-	if n.Type == html.ElementNode && n.Data == "h3" {
-		n = n.FirstChild
-		attr = n.Attr
-//		fmt.Println(attr[0].Val)
-		stack = append(stack, attr[0].Val) // push tag
-		//fmt.Println(stack)
-	}
+func seriesTitles(w http.ResponseWriter, r *http.Request) {
+	t := Titles{}
+	t.Title = title_literal
 	
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		series(c)
-	}
-}
-*/
+	output, _ := json.Marshal(&t)
+	fmt.Fprintf(w, string(output))
+}	

@@ -1,5 +1,8 @@
 package series_now
-func validate(stack []string) []string {
+
+
+
+func Validate(stack []string) []string {
 	var n []string
 	var s string
 	for _, value := range stack {
@@ -13,7 +16,10 @@ func validate(stack []string) []string {
 // should be
 // [ [teen-mom-og: 765609], [cops: 191459/] ]
 func basename(s string) string {
-	s = s[:len(s) - 2]
+	if s == "" {
+		return ""
+	}
+	s = s[:len(s)-2]
 	// Preseve everything before last '/'
 	for i := len(s) - 1; i >= 0; i-- {
 		if s[i] == '/' {
@@ -30,3 +36,4 @@ func basename(s string) string {
 	}
 	return s
 }
+

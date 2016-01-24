@@ -21,7 +21,7 @@ func TestValidate(t *testing.T) {
 		"cops",
 		"figure-skating",
 		"mythbusters"}
-	stack_got := validate(stack)
+	stack_got := Validate(stack)
 	i := 0
 	for _, value := range stack_got {
 		if value != stack_exp[i] {

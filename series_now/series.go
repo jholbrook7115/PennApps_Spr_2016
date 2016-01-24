@@ -13,20 +13,28 @@ type Series struct {
 	Discuss []string
 }*/
 
-func GetSeries(url string) (error, []string) {
-	
+func GetSeries(url string) ([]string, error) {
 	var s []string
+	var new []string
 	resp, err := http.Get(url)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	defer resp.Body.Close()	
 	doc, err := html.Parse(resp.Body)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	forEachNode(doc, startElement, nil, &s)
-	return nil, s
+	// remove blanks
+	for _, value := range s {
+		if value == "" {
+			continue
+		}
+		new = append(new, value)
+	}
+		
+	return new, nil
 }
 
 func forEachNode(n *html.Node, pre, post func(n *html.Node) string, s *[]string) {
