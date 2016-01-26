@@ -8,11 +8,12 @@ websiteControllers.controller('homeController', function($scope){
 
 websiteControllers.controller('activeShowsController', function($scope, $http){
 	$scope.ActiveShows = function getActiveShows(){
+		console.log('getActiveShows');
 	$http({
 		method: 'GET',
-		url: '/series/series_title',
+		url: '#/series/series_titles',
 	}).then(function success(response){
-		return response.data;
+		return response;
 	}, function errorCallback(response){
 		console.log("Error: " + response);
 		return;

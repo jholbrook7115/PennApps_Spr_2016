@@ -1,12 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
-	"net/http"
+	"fmt"
 	"log"
-//	"github.com/lidozeneli/PennApps_Spr_2016/series_now"
+	"net/http"
+	//	"github.com/lidozeneli/PennApps_Spr_2016/series_now"
 )
+
 type Titles struct {
 	Title []string `json:"titles"`
 }
@@ -43,7 +44,7 @@ var title_literal []string = []string{
 	"the-x-files",
 	"island-life",
 	"greatest-party-story-ever",
-	}
+}
 
 func main() {
 	/*stack, err := series_now.GetSeries("http://www.tvguide.com/new-tonight/")
@@ -53,17 +54,17 @@ func main() {
 	valid := series_now.Validate(stack)*/
 	fmt.Println("Starting JSON server on port :8080")
 	http.HandleFunc("/series/series_titles", seriesTitles)
-	
-	//log.Fatal(http.ListenAndServe("localhost:8080", nil))
+
+	log.Fatal(http.ListenAndServe("localhost:8080", http.FileServer(http.Dir("."))))
 
 	//production
-	log.Fatal(http.ListenAndServe("45.79.179.222:8080", nil))
+	// log.Fatal(http.ListenAndServe("45.79.179.222:8080", nil))
 }
 
 func seriesTitles(w http.ResponseWriter, r *http.Request) {
 	t := Titles{}
 	t.Title = title_literal
-	
+
 	output, _ := json.Marshal(&t)
 	fmt.Fprintf(w, string(output))
-}	
+}

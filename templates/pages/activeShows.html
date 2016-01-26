@@ -3,7 +3,7 @@
 		<md-subheader class="md-no-sticky">Shows Airing Now</md-subheader>
 		<md-list-item ng-repeat="show in ActiveShows" ng-cloak>
 			<div class="md-list-item-text">
-				<md-button ng-href="{{show.link}}"><img ng-src="{{show.img}}"/>{{show.name}}</md-button>
+				<md-button>{{show.title}}</md-button>
 			</div>
 		</md-list-item>
 	</md-list>

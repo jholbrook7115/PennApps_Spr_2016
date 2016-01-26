@@ -3,19 +3,19 @@ var app = angular.module( 'RootApp', [ 'ngMaterial', 'ngRoute', 'websiteControll
 	app.config(function($routeProvider){
 	$routeProvider
 		.when('/', {
-			templateUrl: 'pages/home.html',
+			templateUrl: 'templates/pages/home.html',
 			controller: 'homeController'
 		})
 		.when('/active-shows', {
-			templateUrl: 'pages/activeShows.html',
+			templateUrl: 'templates/pages/activeShows.html',
 			controller: 'activeShowsController'
 		})
 		.when('/past-shows', {
-			templateUrl: 'pages/pastShows.html',
+			templateUrl: 'templates/pages/pastShows.html',
 			controller: 'pastShowsController'
 		})
 		.when('/chat-room-list', {
-			templateUrl: 'pages/chatRoom.html',
+			templateUrl: 'templates/pages/chatRoom.html',
 			controller: 'chatLogController'
 		})
 		.otherwise({
